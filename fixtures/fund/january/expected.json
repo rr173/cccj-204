@@ -1,0 +1,64 @@
+{
+  "_note": "Hand-computed from the specification, not from the code.",
+  "flow_lines": {
+    "P": [
+      {
+        "account_id": "ACC-1",
+        "amount_minor": 2,
+        "bank_flow_id": "B1",
+        "section_id": "A"
+      },
+      {
+        "account_id": "ACC-1",
+        "amount_minor": 2,
+        "bank_flow_id": "B1",
+        "section_id": "B"
+      },
+      {
+        "account_id": "ACC-1",
+        "amount_minor": 1,
+        "bank_flow_id": "B2",
+        "section_id": "A"
+      }
+    ],
+    "Q": [
+      {
+        "account_id": "ACC-1",
+        "amount_minor": 4,
+        "bank_flow_id": "B2",
+        "section_id": "A"
+      }
+    ]
+  },
+  "month": "2024-01",
+  "net": {
+    "A": 7,
+    "B": 2
+  },
+  "payment": {
+    "A": 7,
+    "B": 2
+  },
+  "payment_lines": {
+    "P": [
+      {
+        "amount_minor": 3,
+        "section_id": "A"
+      },
+      {
+        "amount_minor": 2,
+        "section_id": "B"
+      }
+    ],
+    "Q": [
+      {
+        "amount_minor": 4,
+        "section_id": "A"
+      }
+    ]
+  },
+  "refund": {
+    "A": 0,
+    "B": 0
+  }
+}

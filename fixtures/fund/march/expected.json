@@ -1,0 +1,31 @@
+{
+  "_note": "February consumed 1 of P's B line (2 -> 1). March's 2 still goes B first (1) then A (1); B is empty afterwards. The March plan is ignored.",
+  "month": "2024-03",
+  "net": {
+    "A": -1,
+    "B": -1
+  },
+  "payment": {},
+  "refund": {
+    "A": 1,
+    "B": 1
+  },
+  "refund_lines": {
+    "R2": [
+      {
+        "amount_minor": -1,
+        "original_month": "2024-01",
+        "original_rank": 1,
+        "original_voucher_id": "P",
+        "section_id": "B"
+      },
+      {
+        "amount_minor": -1,
+        "original_month": "2024-01",
+        "original_rank": 0,
+        "original_voucher_id": "P",
+        "section_id": "A"
+      }
+    ]
+  }
+}

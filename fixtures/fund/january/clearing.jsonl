@@ -1,0 +1,3 @@
+{"account_id": "ACC-1", "amount_minor": 4, "bank_flow_id": "B1", "kind": "clearing", "ledger_id": "BOOK-1", "voucher_id": "P"}
+{"account_id": "ACC-1", "amount_minor": 1, "bank_flow_id": "B2", "kind": "clearing", "ledger_id": "BOOK-1", "voucher_id": "P"}
+{"account_id": "ACC-1", "amount_minor": 4, "bank_flow_id": "B2", "kind": "clearing", "ledger_id": "BOOK-1", "voucher_id": "Q"}

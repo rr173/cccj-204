@@ -1,0 +1,2 @@
+{"account_id": "ACC-1", "amount_minor": 4, "bank_flow_id": "B1", "currency": "CNY", "direction": "outflow", "kind": "bank_flow", "ledger_id": "BOOK-1", "month": "2024-01"}
+{"account_id": "ACC-1", "amount_minor": 5, "bank_flow_id": "B2", "currency": "CNY", "direction": "outflow", "kind": "bank_flow", "ledger_id": "BOOK-1", "month": "2024-01"}

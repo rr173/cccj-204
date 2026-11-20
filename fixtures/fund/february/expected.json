@@ -1,0 +1,24 @@
+{
+  "_note": "1 of P's 5 is returned; B has the larger section key, so the whole 1 is charged to B (B keeps 1 of its 2).",
+  "month": "2024-02",
+  "net": {
+    "A": 0,
+    "B": -1
+  },
+  "payment": {},
+  "refund": {
+    "A": 0,
+    "B": 1
+  },
+  "refund_lines": {
+    "R1": [
+      {
+        "amount_minor": -1,
+        "original_month": "2024-01",
+        "original_rank": 1,
+        "original_voucher_id": "P",
+        "section_id": "B"
+      }
+    ]
+  }
+}

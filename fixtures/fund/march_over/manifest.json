@@ -1,0 +1,15 @@
+{
+  "announcement_result_dir": "../announcement_results/Rb4bcb68a0143cd96",
+  "control_files": {
+    "bank": "control_bank.jsonl",
+    "voucher": "control_voucher.jsonl"
+  },
+  "files": {
+    "allocation_plan": "allocation_plan.jsonl",
+    "bank_flow": "bank_flows.jsonl",
+    "clearing": "clearing.jsonl",
+    "voucher": "vouchers.jsonl"
+  },
+  "ledger_id": "BOOK-1",
+  "month": "2024-03"
+}

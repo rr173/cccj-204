@@ -8,8 +8,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+# ``bin/`` is appended (not prepended) so this script's own name never
+# shadows the ``bidfact`` package during import.
+sys.path.append(str(Path(__file__).resolve().parent))
 
 from bidfact.export import export_all  # noqa: E402
+
+import bidfact_fund  # noqa: E402  (sibling module in bin/)
 from bidfact.pipeline import run_pipeline  # noqa: E402
 from bidfact.storage import Store  # noqa: E402
 from bidfact.timeline import (current_facts, document_statements,  # noqa: E402
@@ -51,7 +56,12 @@ def main(argv: list[str] | None = None) -> int:
     p_exp = sub.add_parser("export", help="write all JSON exports")
     p_exp.add_argument("result_dir", type=Path)
 
+    bidfact_fund.add_arguments(sub)
+
     args = parser.parse_args(argv)
+
+    if args.cmd == "fund":
+        return args.func(args)
 
     if args.cmd == "run":
         out = run_pipeline(args.collection, args.results,

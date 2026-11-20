@@ -1,0 +1,32 @@
+{
+  "PRJ-A/A": {
+    "assertion_id": "ast_77a0714a9f3c2641",
+    "document_id": "docAnn1",
+    "result_id": "Rb4bcb68a0143cd96",
+    "unit_raw": "甲公司"
+  },
+  "PRJ-A/B": {
+    "assertion_id": "ast_55d160ebeaaf7682",
+    "document_id": "docAnn1",
+    "result_id": "Rb4bcb68a0143cd96",
+    "unit_raw": "乙公司"
+  },
+  "PRJ-A/G": {
+    "assertion_id": "ast_04cbc6efeefaecf6",
+    "document_id": "docAnn1",
+    "result_id": "Rb4bcb68a0143cd96",
+    "unit_raw": "庚公司"
+  },
+  "PRJ-A/L": {
+    "assertion_id": "ast_99721c0c66ad55b4",
+    "document_id": "docAnn1",
+    "result_id": "Rb4bcb68a0143cd96",
+    "unit_raw": "己公司"
+  },
+  "prj-a/a": {
+    "assertion_id": "ast_eac4b3dbba58fd91",
+    "document_id": "docAnn2",
+    "result_id": "Rb4bcb68a0143cd96",
+    "unit_raw": "甲小写公司"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "collection": "fund-announcement",
+  "documents": [
+    {
+      "document_id": "docAnn1",
+      "notice_id": "N-ANN-1",
+      "project_id": "PRJ-A",
+      "published_at": "2023-12-01T09:00:00",
+      "section_ids": [
+        "A",
+        "B",
+        "G",
+        "L"
+      ],
+      "site": "site1",
+      "source": {
+        "file": "pages/docAnn1.json",
+        "sha256": "1c0cd4f63db845bcae3a07590d93834cab5e692482a7d87cbb1ca3c1856789c0"
+      }
+    },
+    {
+      "document_id": "docAnn2",
+      "notice_id": "N-ANN-2",
+      "project_id": "prj-a",
+      "published_at": "2023-12-02T09:00:00",
+      "section_ids": [
+        "a"
+      ],
+      "site": "site1",
+      "source": {
+        "file": "pages/docAnn2.json",
+        "sha256": "087f328fcbc7c4b57a7d94c8ede5d3feb615a4cfa34e71c99c48f0b130cb8e23"
+      }
+    }
+  ]
+}
