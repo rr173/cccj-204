@@ -1,0 +1,108 @@
+{
+  "table_id": "MG1",
+  "document_id": "docM",
+  "page_no": 1,
+  "continuation": null,
+  "cells": [
+    {
+      "page_no": 1,
+      "row": 0,
+      "col": 0,
+      "text": "标段编号",
+      "start": 13,
+      "end": 17,
+      "rowspan": 2,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 0,
+      "col": 1,
+      "text": "预算金额",
+      "start": 18,
+      "end": 22,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 1,
+      "col": 1,
+      "text": "（万元）",
+      "start": 36,
+      "end": 40,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 0,
+      "col": 2,
+      "text": "投标单位",
+      "start": 23,
+      "end": 27,
+      "rowspan": 2,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 2,
+      "col": 0,
+      "text": "M-01",
+      "start": 41,
+      "end": 45,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 2,
+      "col": 1,
+      "text": "100.00",
+      "start": 46,
+      "end": 52,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 2,
+      "col": 2,
+      "text": "甲公司",
+      "start": 53,
+      "end": 56,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 3,
+      "col": 0,
+      "text": "M-02",
+      "start": 57,
+      "end": 61,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 3,
+      "col": 1,
+      "text": "200.00",
+      "start": 62,
+      "end": 68,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 3,
+      "col": 2,
+      "text": "乙公司",
+      "start": 69,
+      "end": 72,
+      "rowspan": 1,
+      "colspan": 1
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "relations": [
+    {
+      "relation_id": "rel-missing-target",
+      "acting_document_id": "docX2",
+      "verb": "replace",
+      "target_document_id": "docGHOST",
+      "target_sections": [
+        "X-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 51,
+          "end": 57,
+          "text": "110 万元"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-x2-x1",
+      "acting_document_id": "docX2",
+      "verb": "replace",
+      "target_document_id": "docX1",
+      "target_sections": [
+        "X-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 51,
+          "end": 57,
+          "text": "110 万元"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-x1-x2",
+      "acting_document_id": "docX1",
+      "verb": "replace",
+      "target_document_id": "docX2",
+      "target_sections": [
+        "X-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 51,
+          "end": 57,
+          "text": "100 万元"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-future",
+      "acting_document_id": "docX1",
+      "verb": "supplement",
+      "target_document_id": "docX3",
+      "target_sections": [
+        "X-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 51,
+          "end": 57,
+          "text": "100 万元"
+        }
+      ]
+    }
+  ]
+}

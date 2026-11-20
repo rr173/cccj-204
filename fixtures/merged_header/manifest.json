@@ -1,0 +1,26 @@
+{
+  "collection": "merged_header",
+  "documents": [
+    {
+      "document_id": "docM",
+      "notice_id": "N-MG",
+      "site": "site1",
+      "project_id": "P-95",
+      "section_ids": [
+        "M-01",
+        "M-02"
+      ],
+      "published_at": "2024-01-22T09:00:00",
+      "source": {
+        "file": "pages/docM.json",
+        "sha256": "0a162832b6c5c2b7319ec96d8d41b15f29fca3ffdecd73913999b8a2e10eb9e2"
+      },
+      "tables": [
+        {
+          "file": "tables/MG1.json",
+          "sha256": "3019fb47d028fc0003992a62e8c088a7541b3549e21b1565d494c110c301013c"
+        }
+      ]
+    }
+  ]
+}

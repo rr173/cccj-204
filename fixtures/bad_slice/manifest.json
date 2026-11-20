@@ -1,0 +1,25 @@
+{
+  "collection": "bad_slice",
+  "documents": [
+    {
+      "document_id": "docB1",
+      "notice_id": "N-B1",
+      "site": "site1",
+      "project_id": "P-94",
+      "section_ids": [
+        "B-01"
+      ],
+      "published_at": "2024-04-01T09:00:00",
+      "source": {
+        "file": "pages/docB1.json",
+        "sha256": "be30504f24eb51d0787ae866a902e1818852628ccacd466493b3a25c1b1429cd"
+      },
+      "tables": [
+        {
+          "file": "tables/BAD1.json",
+          "sha256": "d4dc018be6278f0187034a5c64ad35e1faca2df54143d38a4d46ac67e3f08c04"
+        }
+      ]
+    }
+  ]
+}

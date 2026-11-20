@@ -1,0 +1,49 @@
+{
+  "table_id": "NC2",
+  "document_id": "docNC",
+  "page_no": 2,
+  "continuation": "continues_from:NC1",
+  "continuation_marker": null,
+  "cells": [
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 0,
+      "text": "标段编号",
+      "start": 12,
+      "end": 16,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 1,
+      "text": "预算金额（万元）",
+      "start": 17,
+      "end": 25,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 0,
+      "text": "L-02",
+      "start": 26,
+      "end": 30,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 1,
+      "text": "999.00",
+      "start": 31,
+      "end": 37,
+      "rowspan": 1,
+      "colspan": 1
+    }
+  ]
+}

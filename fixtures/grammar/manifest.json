@@ -1,0 +1,19 @@
+{
+  "collection": "grammar",
+  "documents": [
+    {
+      "document_id": "docG",
+      "notice_id": "N-G",
+      "site": "site1",
+      "project_id": "P-90",
+      "section_ids": [
+        "G-01"
+      ],
+      "published_at": "2024-07-01T09:00:00",
+      "source": {
+        "file": "pages/docG.json",
+        "sha256": "f120fbcc1d22b11b1cd9e919c8a2fbf8d58edbdd0282ef9dbc428d286388eacf"
+      }
+    }
+  ]
+}

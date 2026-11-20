@@ -1,0 +1,45 @@
+{
+  "collection": "repost",
+  "documents": [
+    {
+      "document_id": "docR1",
+      "notice_id": "N-R",
+      "site": "site1",
+      "project_id": "P-91",
+      "section_ids": [
+        "R-01"
+      ],
+      "published_at": "2024-01-05T09:00:00",
+      "source": {
+        "file": "pages/docR1.json",
+        "sha256": "1b03b77c118f6365e037fab2c9d9e84500b9004d77c4d00b0108dc0cfb619955"
+      },
+      "same_notice": [
+        {
+          "notice_id": "N-R",
+          "document_id": "docR1",
+          "site": "site1"
+        },
+        {
+          "notice_id": "N-R",
+          "document_id": "docR2",
+          "site": "site2"
+        }
+      ]
+    },
+    {
+      "document_id": "docR2",
+      "notice_id": "N-R-COPY",
+      "site": "site2",
+      "project_id": "P-91",
+      "section_ids": [
+        "R-01"
+      ],
+      "published_at": "2024-01-06T09:00:00",
+      "source": {
+        "file": "pages/docR2.json",
+        "sha256": "6efb343bd2160e54269237a3deb205e77383ee8f6ffc26d93399f361862dee20"
+      }
+    }
+  ]
+}

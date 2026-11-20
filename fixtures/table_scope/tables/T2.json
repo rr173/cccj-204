@@ -1,0 +1,113 @@
+{
+  "table_id": "T2",
+  "document_id": "docT",
+  "page_no": 2,
+  "continuation": "continues_from:T1",
+  "continuation_marker": {
+    "page_no": 2,
+    "start": 0,
+    "end": 6
+  },
+  "cells": [
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 0,
+      "text": "标段编号",
+      "start": 7,
+      "end": 11,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 1,
+      "text": "预算金额（万元）",
+      "start": 12,
+      "end": 20,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 2,
+      "text": "投标截止时间",
+      "start": 21,
+      "end": 27,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 3,
+      "text": "中标单位",
+      "start": 28,
+      "end": 32,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 0,
+      "col": 4,
+      "text": "中标金额（元）",
+      "start": 33,
+      "end": 40,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 0,
+      "text": "L-03",
+      "start": 41,
+      "end": 45,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 1,
+      "text": "300.00",
+      "start": 46,
+      "end": 52,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 2,
+      "text": "2024-02-17",
+      "start": 53,
+      "end": 63,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 3,
+      "text": "丙公司",
+      "start": 64,
+      "end": 67,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 2,
+      "row": 1,
+      "col": 4,
+      "text": "3000000",
+      "start": 68,
+      "end": 75,
+      "rowspan": 1,
+      "colspan": 1
+    }
+  ]
+}

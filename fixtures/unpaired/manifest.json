@@ -1,0 +1,20 @@
+{
+  "collection": "unpaired",
+  "documents": [
+    {
+      "document_id": "docU",
+      "notice_id": "N-U",
+      "site": "site1",
+      "project_id": "P-93",
+      "section_ids": [
+        "U-01",
+        "U-02"
+      ],
+      "published_at": "2024-05-01T09:00:00",
+      "source": {
+        "file": "pages/docU.json",
+        "sha256": "309999344b3ab3ed6f3e0d7c9c575acafa86d3d04eff1407c07986c1776a4df6"
+      }
+    }
+  ]
+}

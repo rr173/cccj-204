@@ -1,0 +1,47 @@
+{
+  "collection": "relations_edges",
+  "documents": [
+    {
+      "document_id": "docX1",
+      "notice_id": "N-X1",
+      "site": "site1",
+      "project_id": "P-92",
+      "section_ids": [
+        "X-01"
+      ],
+      "published_at": "2024-02-01T09:00:00",
+      "source": {
+        "file": "pages/docX1.json",
+        "sha256": "ec76441bb00f0b030c96679a81c8dd4bc826a53f725ffeee07b455fc4477f9c7"
+      }
+    },
+    {
+      "document_id": "docX2",
+      "notice_id": "N-X2",
+      "site": "site1",
+      "project_id": "P-92",
+      "section_ids": [
+        "X-01"
+      ],
+      "published_at": "2024-02-01T09:00:00",
+      "source": {
+        "file": "pages/docX2.json",
+        "sha256": "ab71ab5b059cbab732a2a9d59ace9741b9837825ab3c59d2735c2eccd0e6797b"
+      }
+    },
+    {
+      "document_id": "docX3",
+      "notice_id": "N-X3",
+      "site": "site1",
+      "project_id": "P-92",
+      "section_ids": [
+        "X-01"
+      ],
+      "published_at": "2024-03-01T09:00:00",
+      "source": {
+        "file": "pages/docX3.json",
+        "sha256": "70decb9d7fef5cc5011f9316f50758dc2ac5bec025a606cf60b302072600adab"
+      }
+    }
+  ]
+}

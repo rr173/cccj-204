@@ -1,0 +1,23 @@
+{
+  "100": {
+    "result_id": "R7ce0128a55ec6a32",
+    "assertions": 400,
+    "peak_rss_kb_cumulative": 20704,
+    "delta_kb": 1076,
+    "db_size_bytes": 344064
+  },
+  "1000": {
+    "result_id": "Rb0573161cc6c91b5",
+    "assertions": 4000,
+    "peak_rss_kb_cumulative": 24732,
+    "delta_kb": 1340,
+    "db_size_bytes": 2588672
+  },
+  "5000": {
+    "result_id": "Rff777181b700c460",
+    "assertions": 20000,
+    "peak_rss_kb_cumulative": 31568,
+    "delta_kb": 0,
+    "db_size_bytes": 12546048
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "collection": "table_scope",
+  "documents": [
+    {
+      "document_id": "docT",
+      "notice_id": "N-T",
+      "site": "site1",
+      "project_id": "P-88",
+      "section_ids": [
+        "L-01",
+        "L-02",
+        "L-03"
+      ],
+      "published_at": "2024-01-20T09:00:00",
+      "source": {
+        "file": "pages/docT.json",
+        "sha256": "5ba62e02976fc3a2143e4c568fa82ecdeebce591116fea5affa4bc1c4104a991"
+      },
+      "tables": [
+        {
+          "file": "tables/T1.json",
+          "sha256": "cd9b7a50d98c94e5d69b10a12190d7493e2acdc1f449b5c1f5ddee3afb5f13d4"
+        },
+        {
+          "file": "tables/T2.json",
+          "sha256": "2f241472f12e8fdc147db274d5db0668249d901249215f252141ddc6f17deda0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "table_id": "BAD1",
+  "document_id": "docB1",
+  "page_no": 1,
+  "continuation": null,
+  "cells": [
+    {
+      "page_no": 1,
+      "row": 0,
+      "col": 0,
+      "text": "预算金额（万元）",
+      "start": 46,
+      "end": 54,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 0,
+      "col": 1,
+      "text": "投标单位",
+      "start": 55,
+      "end": 59,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 1,
+      "col": 0,
+      "text": "B-01",
+      "start": 41,
+      "end": 45,
+      "rowspan": 1,
+      "colspan": 1
+    },
+    {
+      "page_no": 1,
+      "row": 1,
+      "col": 1,
+      "text": "错位金额 100 万元",
+      "start": 65,
+      "end": 74
+    }
+  ]
+}

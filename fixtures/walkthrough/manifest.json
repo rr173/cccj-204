@@ -1,0 +1,89 @@
+{
+  "collection": "walkthrough",
+  "documents": [
+    {
+      "document_id": "docA",
+      "notice_id": "N-A",
+      "site": "site1",
+      "project_id": "P-77",
+      "section_ids": [
+        "L-01"
+      ],
+      "published_at": "2024-01-10T09:00:00",
+      "source": {
+        "file": "pages/docA.json",
+        "sha256": "6b7a79cde6e36ffb428ccdb83211bc7f714aa18ce566f38b25d19e6dbb6fe843"
+      }
+    },
+    {
+      "document_id": "docB",
+      "notice_id": "N-B",
+      "site": "site1",
+      "project_id": "P-77",
+      "section_ids": [
+        "L-01"
+      ],
+      "published_at": "2024-02-01T10:00:00",
+      "source": {
+        "file": "pages/docB.json",
+        "sha256": "2a91206911a36fd8be3abd82f64823675aab7a3f8b436b98a6054a95e36486d9"
+      }
+    },
+    {
+      "document_id": "docC",
+      "notice_id": "N-C",
+      "site": "site1",
+      "project_id": "P-77",
+      "section_ids": [
+        "L-01"
+      ],
+      "published_at": "2024-03-01T10:00:00",
+      "source": {
+        "file": "pages/docC.json",
+        "sha256": "d07b0743012cb6f14998871f61fe85e5d3a9a1427c58f0e616cdcc7ecc955f06"
+      }
+    },
+    {
+      "document_id": "docD",
+      "notice_id": "N-D",
+      "site": "site1",
+      "project_id": "P-77",
+      "section_ids": [
+        "L-01"
+      ],
+      "published_at": "2024-04-01T10:00:00",
+      "source": {
+        "file": "pages/docD.json",
+        "sha256": "8179e34e89f80cb03563f7d658d8748e754e26572f991ddd62f9deb5311df28d"
+      }
+    },
+    {
+      "document_id": "docE",
+      "notice_id": "N-E",
+      "site": "site1",
+      "project_id": "P-77",
+      "section_ids": [
+        "L-01"
+      ],
+      "published_at": "2024-05-01T10:00:00",
+      "source": {
+        "file": "pages/docE.json",
+        "sha256": "1b4c47f2122ccac73d836c4d51fefdc4fa2c13918fb743e3d2a0a0a395258291"
+      }
+    },
+    {
+      "document_id": "docF",
+      "notice_id": "N-F",
+      "site": "site1",
+      "project_id": "P-77",
+      "section_ids": [
+        "L-01"
+      ],
+      "published_at": "2024-06-01T10:00:00",
+      "source": {
+        "file": "pages/docF.json",
+        "sha256": "7a968f4eaac4e33d402c1cb11343be8ea6d0e3d6994655b2a5843878c70d3083"
+      }
+    }
+  ]
+}

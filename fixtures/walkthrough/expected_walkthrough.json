@@ -1,0 +1,72 @@
+{
+  "_note": "Hand-authored business expectations for the walkthrough. These values are written from the specification, NOT produced by the extractor; tests compare processor output against this file.",
+  "collection": "walkthrough",
+  "points_in_time": {
+    "2024-01-31T23:59:59": {
+      "L-01": {
+        "budget": {"status": "value", "normalized": "1000000",
+                   "currency": "CNY", "provenance_documents": ["docA"]},
+        "deadline": {"status": "value", "normalized": "2024-02-15",
+                     "provenance_documents": ["docA"]}
+      }
+    },
+    "2024-02-15T23:59:59": {
+      "L-01": {
+        "budget": {"status": "value", "normalized": "1000000",
+                   "currency": "CNY", "provenance_documents": ["docA"],
+                   "note": "B only replaces deadline; B's own statements contain no budget, so A's budget stays current with A as provenance"},
+        "deadline": {"status": "value", "normalized": "2024-03-20",
+                     "provenance_documents": ["docB"]}
+      }
+    },
+    "2024-03-15T23:59:59": {
+      "L-01": {
+        "budget": {"status": "conflict",
+                   "candidates": [
+                     {"document_id": "docA", "normalized": "1000000"},
+                     {"document_id": "docC", "normalized": "1200000"}
+                   ],
+                   "note": "C supplements without replacing A; no ordering tie-break is allowed"}
+      }
+    },
+    "2024-04-15T23:59:59": {
+      "L-01": {
+        "budget": {"status": "value", "normalized": "1000000",
+                   "provenance_documents": ["docA"],
+                   "note": "D retracts only C's assertion; A was never closed, so this is the surviving original, not a restored value"}
+      }
+    },
+    "2024-05-15T23:59:59": {
+      "L-01": {
+        "budget": {"status": "value", "normalized": "1100000",
+                   "currency": "CNY", "provenance_documents": ["docE"],
+                   "note": "E replaces A's budget, closing A's assertion"}
+      }
+    },
+    "2024-06-15T23:59:59": {
+      "L-01": {
+        "budget": {"status": "withdrawn",
+                   "note": "F retracts E; A remains closed from E's replace, so nothing revives — withdrawn, not A's 1000000"}
+      }
+    }
+  },
+  "document_B_own_fields": ["deadline"],
+  "closure_targets": {
+    "rel-B-deadline": {"verb": "replace", "target_document": "docA",
+                       "target_field": "deadline"},
+    "rel-D-retract-c": {"verb": "retract", "target_document": "docC",
+                        "target_field": "budget"},
+    "rel-E-replace-a": {"verb": "replace", "target_document": "docA",
+                        "target_field": "budget"},
+    "rel-F-retract-e": {"verb": "retract", "target_document": "docE",
+                        "target_field": "budget"}
+  },
+  "manual_timeline": [
+    {"at": "2024-01-10", "doc": "docA", "event": "assert budget 1000000 (100.00 万元, CNY); deadline 2024-02-15", "section": "L-01"},
+    {"at": "2024-02-01", "doc": "docB", "event": "replace -> closes docA deadline; asserts deadline 2024-03-20; no budget statement", "section": "L-01"},
+    {"at": "2024-03-01", "doc": "docC", "event": "supplement -> adds budget 1200000; docA budget stays open -> conflict", "section": "L-01"},
+    {"at": "2024-04-01", "doc": "docD", "event": "retract -> closes only docC budget; docA budget remains the sole open value", "section": "L-01"},
+    {"at": "2024-05-01", "doc": "docE", "event": "replace -> closes docA budget; asserts budget 1100000", "section": "L-01"},
+    {"at": "2024-06-01", "doc": "docF", "event": "retract -> closes docE budget; nothing open and A already closed -> withdrawn", "section": "L-01"}
+  ]
+}

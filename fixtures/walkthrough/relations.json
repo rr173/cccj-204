@@ -1,0 +1,104 @@
+{
+  "relations": [
+    {
+      "relation_id": "rel-B-deadline",
+      "acting_document_id": "docB",
+      "verb": "replace",
+      "target_document_id": "docA",
+      "target_sections": [
+        "L-01"
+      ],
+      "fields": [
+        "deadline"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 56,
+          "end": 76,
+          "text": "材料截止日期修改为 2024年3月20日"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-C-budget",
+      "acting_document_id": "docC",
+      "verb": "supplement",
+      "target_document_id": "docA",
+      "target_sections": [
+        "L-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 64,
+          "end": 70,
+          "text": "120 万元"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-D-retract-c",
+      "acting_document_id": "docD",
+      "verb": "retract",
+      "target_document_id": "docC",
+      "target_sections": [
+        "L-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 56,
+          "end": 62,
+          "text": "120 万元"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-E-replace-a",
+      "acting_document_id": "docE",
+      "verb": "replace",
+      "target_document_id": "docA",
+      "target_sections": [
+        "L-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 47,
+          "end": 58,
+          "text": "采购预算：110 万元"
+        }
+      ]
+    },
+    {
+      "relation_id": "rel-F-retract-e",
+      "acting_document_id": "docF",
+      "verb": "retract",
+      "target_document_id": "docE",
+      "target_sections": [
+        "L-01"
+      ],
+      "fields": [
+        "budget"
+      ],
+      "quote": [
+        {
+          "page_no": 1,
+          "start": 51,
+          "end": 57,
+          "text": "110 万元"
+        }
+      ]
+    }
+  ]
+}
