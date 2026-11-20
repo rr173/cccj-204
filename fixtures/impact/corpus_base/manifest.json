@@ -1,0 +1,21 @@
+{
+  "collection": "impact-base",
+  "documents": [
+    {
+      "document_id": "docBase",
+      "notice_id": "N-BASE",
+      "project_id": "PRJ-X",
+      "published_at": "2024-01-05T09:00:00",
+      "section_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "site": "site1",
+      "source": {
+        "file": "pages/docBase.json",
+        "sha256": "d4ea886fb6a4c82eaa144956938f9492806b55aab3cf83c90b1186b1c03a6b82"
+      }
+    }
+  ]
+}

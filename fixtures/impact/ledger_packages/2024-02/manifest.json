@@ -1,0 +1,15 @@
+{
+  "announcement_result_dir": "../../results/R27d61e9c5b04d2a0",
+  "control_files": {
+    "bank": "control_bank.jsonl",
+    "voucher": "control_voucher.jsonl"
+  },
+  "files": {
+    "allocation_plan": "allocation_plan.jsonl",
+    "bank_flow": "bank_flows.jsonl",
+    "clearing": "clearing.jsonl",
+    "voucher": "vouchers.jsonl"
+  },
+  "ledger_id": "BOOK-IMP",
+  "month": "2024-02"
+}

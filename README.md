@@ -39,11 +39,13 @@ bidfact/            库代码（仅标准库）
   storage.py        SQLite 持久层（确定性主键，重跑幂等）
   pipeline.py       编排 + 结果号
   export.py         facts/conflicts/evidence/relations/statements/timeline
-  fund/             采购资金月结（输入、勾兑、分摊、退款、独立资金库、读写）
+  fund/             采购资金月结（输入、勾兑、分摊、退款、独立资金库、读写、
+                    只读公告依据影响分析 impact）
 bin/bidfact.py      CLI（含 fund 子命令）
 bin/bidfact_fund.py fund 子命令的实现
 tests/              unittest 套件、夹具生成器、手工预期、大样本内存样例
-fixtures/           可提交的小夹具（含 expected_walkthrough.json、fund/ 月结样例）
+fixtures/           可提交的小夹具（含 expected_walkthrough.json、fund/ 月结样例、
+                    impact/ 影响分析样例）
 ```
 
 ## 运行
@@ -267,4 +269,81 @@ python3 -I tests/run_fund_tests.py       # 资金月结测试
 P（5 分）等权分 A 3 / B 2，Q（4 分）全给 A；二月退 P 的 1 分先冲 B；
 三月再退 2 分先冲 B 剩余的 1 分、再冲 A 1 分——即使三月的财务方案
 已改成只含 B。累计到三月：A 净 6、B 净 0。
+
+---
+
+# 公告依据影响分析（fund impact，只读）
+
+财务按关账当时可核实的中标声明完成月结后，公告可能被更正或撤回。
+`fund impact` 回答的是**另一个问题**：已关账付款里，哪些正向分摊行
+曾经依赖某条断言、涉及多少已付/已冲/未冲款项、该断言在指定的后续
+公告结果库与查询截止时刻下变成了什么。它只生成分析结果，绝不改动
+已关账记录、退款额度、公告断言或资金库元数据。
+
+## 输入与边界
+
+- 一个**已关账资金库**（`--ledger`）与一个明确指定的**后续公告结果
+  库**（`--result`，bidfact 生成的 SQLite 结果，给结果目录或其
+  `store.sqlite3` 均可）；两个库都以 SQLite 只读 URI 打开，全程不联网。
+- 一个查询截止时刻 `--at`（ISO 时间）：只有 `published_at <= at` 的
+  断言与关闭关系参与判断。
+- 可选过滤 `--month-from/--month-to/--project/--section`；省略时覆盖
+  资金库中全部已关账月份。退款只统计截止月份（`month-to`，缺省为全部
+  已关账月份）之前（含当月）已入账的部分。
+
+## 状态口径（每条正向付款分摊行一个状态）
+
+| 状态 | 含义 |
+| --- | --- |
+| `closed` | 原断言在截止时刻前已被确认的 `replace`/`retract` 关系关闭；证据给出关闭它的公告、关系号、动词与发布时间。撤回其他断言不会复活已关闭断言 |
+| `contested` | 原断言仍开放，但同 `(项目, 标段, result_unit)` 作用域在截止时刻存在两个及以上取值不同的开放确认断言；全部不同值与各自出处都列出，不按发布时间选值 |
+| `unchanged` | 原断言仍开放、已确认、作用域一致，且该作用域全部开放断言同值 |
+| `unverifiable` | 结果号与所开库不符、断言缺失/非 confirmed/作用域不一致/截止时刻尚未发布，或输入库无法读取；必须带具体 reason，缺数据绝不推断为未变化 |
+
+发布时间较新本身不构成替代；公告当前中标金额也从不被当作付款金额。
+
+## 血缘与金额
+
+- 以资金库保存的 `result_id`、`assertion_id`、项目/标段与原付款分摊为
+  起点，按 `(关账月份, 账套, 凭证, 分摊行 rank)` 自然键逐行匹配，凭证
+  拆分、退款拆分或同名项目都不会合并锚点。
+- 退款沿关账时已保存的 `refund_allocations` 冲回明细回溯到原分摊行，
+  **不按退款月方案重算**；每行给出原分摊金额、截至所选月份已冲金额、
+  未冲金额及完整退款血缘。
+- 一条断言被多笔付款引用时，每笔金额分别保留；状态汇总按分摊行汇总，
+  不重复计算任何分摊金额。
+
+## 命令与输出
+
+```bash
+python3 -I bin/bidfact.py fund impact \
+  --ledger ./fund_ledger --result ./later_results/R… \
+  --at 2024-05-01T00:00:00 \
+  [--month-from 2024-01 --month-to 2024-03 --project P --section A] \
+  [--jsonl ./lines.jsonl] [--report-jsonl ./report.jsonl] [--terminal]
+```
+
+- 默认输出 JSON 报告（含按状态、按项目/标段的金额汇总，可逐项展开回
+  明细）；`--jsonl` 把明细流式落盘（响应不再内嵌 lines），
+  `--report-jsonl` 输出“报告头 + 两类汇总 + 明细”的单文件 JSONL，
+  `--terminal` 输出稳定排序的中文终端摘要。
+- 每行保留输入结果号、截止时刻、来源文件/行号与数据库自然键，供审计
+  复跑；相同参数重复运行得到相同业务内容，运行前后两个输入库字节不变。
+- 明细经数据库游标按有界批处理流经临时暂存库，不把全部分摊与关系记录
+  载入内存；大月结库的有界内存行为由
+  `tests/run_impact_tests.py::TestBoundedMemory` 验证（可用
+  `BIDFACT_SKIP_MEMORY=1` 跳过）。
+
+## 样例与测试
+
+```bash
+python3 -I tests/make_impact_fixtures.py   # 构造隔离小账与两份以上独立公告结果库
+python3 -I tests/run_impact_tests.py       # 影响分析测试（含手工预期）
+```
+
+`fixtures/impact/` 是可复跑的离线样例：基线库 S0 经现有流水线生成，
+S1–S8 是在其副本上按 bidfact 存储 schema 独立构造的后续结果库
+（replace、冲突补充、撤回新断言、缺失断言、作用域不一致、非 confirmed、
+错误结果号、空库）；`impact_expected.json` 是逐笔手算的期望状态与金额。
+大月结库在测试运行时生成，不作为夹具提交。
 

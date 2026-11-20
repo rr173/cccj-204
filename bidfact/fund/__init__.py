@@ -18,9 +18,17 @@ allocation and refund uses exact integer arithmetic
 from .close import (Report, close_month, months_closed, read_cumulative,
                     read_month, trial_close)
 from .errors import CloseBlocked, FundError, InputError, MonthAlreadyClosed
+from .impact import (STATUS_CLOSED, STATUS_CONTESTED, STATUS_UNCHANGED,
+                     STATUS_UNVERIFIABLE, ImpactError, ImpactFilters,
+                     ImpactReport, analyze_impact, render_terminal,
+                     write_report_jsonl)
 
 __all__ = [
     "FundError", "InputError", "CloseBlocked", "MonthAlreadyClosed",
     "Report", "trial_close", "close_month", "read_month", "months_closed",
     "read_cumulative",
+    "ImpactError", "ImpactFilters", "ImpactReport", "analyze_impact",
+    "render_terminal", "write_report_jsonl",
+    "STATUS_UNCHANGED", "STATUS_CONTESTED", "STATUS_CLOSED",
+    "STATUS_UNVERIFIABLE",
 ]

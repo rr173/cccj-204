@@ -1,0 +1,2 @@
+{"amount_minor": 6, "currency": "CNY", "direction": "outflow", "kind": "voucher", "ledger_id": "BOOK-IMP", "month": "2024-01", "voucher_id": "PX", "voucher_type": "payment"}
+{"amount_minor": 4, "currency": "CNY", "direction": "outflow", "kind": "voucher", "ledger_id": "BOOK-IMP", "month": "2024-01", "voucher_id": "PY", "voucher_type": "payment"}

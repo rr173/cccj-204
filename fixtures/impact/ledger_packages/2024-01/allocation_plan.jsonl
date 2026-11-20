@@ -1,0 +1,4 @@
+{"kind": "allocation_plan", "ledger_id": "BOOK-IMP", "plan_id": "PLAN-PX", "project_id": "PRJ-X", "result_id": "R27d61e9c5b04d2a0", "result_unit_assertion_id": "ast_bd45e3d3f9c0249b", "section_id": "A", "voucher_id": "PX", "weight": 1}
+{"kind": "allocation_plan", "ledger_id": "BOOK-IMP", "plan_id": "PLAN-PX", "project_id": "PRJ-X", "result_id": "R27d61e9c5b04d2a0", "result_unit_assertion_id": "ast_8759ee9cd122a626", "section_id": "B", "voucher_id": "PX", "weight": 1}
+{"kind": "allocation_plan", "ledger_id": "BOOK-IMP", "plan_id": "PLAN-PY", "project_id": "PRJ-X", "result_id": "R27d61e9c5b04d2a0", "result_unit_assertion_id": "ast_bd45e3d3f9c0249b", "section_id": "A", "voucher_id": "PY", "weight": 1}
+{"kind": "allocation_plan", "ledger_id": "BOOK-IMP", "plan_id": "PLAN-PY", "project_id": "PRJ-X", "result_id": "R27d61e9c5b04d2a0", "result_unit_assertion_id": "ast_7bf5d111d113a095", "section_id": "C", "voucher_id": "PY", "weight": 1}

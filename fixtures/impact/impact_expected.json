@@ -1,0 +1,173 @@
+{
+  "_note": "Hand-computed from the impact specification. PX=6 split equally A=3/B=3; the 2分 refund hits B first (larger key), so after 2024-02: PX-A refunded 0 outstanding 3; PX-B refunded 2 outstanding 1. PY=4 split equally A=2/C=2 with no refund; PY-A reuses A's assertion (one assertion, two payments), and C carries the same unit text 甲公司 as A but a different section.",
+  "cutoff_early": "2024-01-20T00:00:00",
+  "cutoff_late": "2024-05-01T00:00:00",
+  "expected_reasons": {
+    "S4": {
+      "B": "assertion_missing_in_later_store"
+    },
+    "S5": {
+      "all": "result_id_mismatch"
+    },
+    "S6": {
+      "all": "assertion_missing_in_later_store"
+    },
+    "S7": {
+      "B": "assertion_scope_mismatch"
+    },
+    "S8": {
+      "B": "assertion_not_confirmed"
+    }
+  },
+  "expected_status": {
+    "S1": {
+      "PX": {
+        "A": "closed",
+        "B": "unchanged"
+      },
+      "PY": {
+        "A": "closed",
+        "C": "unchanged"
+      }
+    },
+    "S2": {
+      "PX": {
+        "A": "closed",
+        "B": "contested"
+      },
+      "PY": {
+        "A": "closed",
+        "C": "unchanged"
+      }
+    },
+    "S3": {
+      "PX": {
+        "A": "closed",
+        "B": "unchanged"
+      },
+      "PY": {
+        "A": "closed",
+        "C": "unchanged"
+      }
+    },
+    "S4": {
+      "PX": {
+        "A": "unchanged",
+        "B": "unverifiable"
+      },
+      "PY": {
+        "A": "unchanged",
+        "C": "unchanged"
+      }
+    },
+    "S5": {
+      "PX": {
+        "A": "unverifiable",
+        "B": "unverifiable"
+      },
+      "PY": {
+        "A": "unverifiable",
+        "C": "unverifiable"
+      }
+    },
+    "S6": {
+      "PX": {
+        "A": "unverifiable",
+        "B": "unverifiable"
+      },
+      "PY": {
+        "A": "unverifiable",
+        "C": "unverifiable"
+      }
+    },
+    "S7": {
+      "PX": {
+        "A": "unchanged",
+        "B": "unverifiable"
+      },
+      "PY": {
+        "A": "unchanged",
+        "C": "unchanged"
+      }
+    },
+    "S8": {
+      "PX": {
+        "A": "unchanged",
+        "B": "unverifiable"
+      },
+      "PY": {
+        "A": "unchanged",
+        "C": "unchanged"
+      }
+    }
+  },
+  "ledger_id": "BOOK-IMP",
+  "payment_lines": [
+    {
+      "amount_minor": 3,
+      "assertion_id": "ast_bd45e3d3f9c0249b",
+      "outstanding_minor": 3,
+      "rank": 0,
+      "refunded_minor": 0,
+      "section_id": "A",
+      "voucher_id": "PX"
+    },
+    {
+      "amount_minor": 3,
+      "assertion_id": "ast_8759ee9cd122a626",
+      "outstanding_minor": 1,
+      "rank": 1,
+      "refunded_minor": 2,
+      "section_id": "B",
+      "voucher_id": "PX"
+    },
+    {
+      "amount_minor": 2,
+      "assertion_id": "ast_bd45e3d3f9c0249b",
+      "outstanding_minor": 2,
+      "rank": 0,
+      "refunded_minor": 0,
+      "section_id": "A",
+      "voucher_id": "PY"
+    },
+    {
+      "amount_minor": 2,
+      "assertion_id": "ast_7bf5d111d113a095",
+      "outstanding_minor": 2,
+      "rank": 1,
+      "refunded_minor": 0,
+      "section_id": "C",
+      "voucher_id": "PY"
+    }
+  ],
+  "replace_published_at": "2024-02-10T09:00:00",
+  "result_id": "R27d61e9c5b04d2a0",
+  "retract_published_at": "2024-04-01T09:00:00",
+  "s1_closed_values": {
+    "A": {
+      "acting_document_id": "docFix1",
+      "relation_id": "rel-replace-a",
+      "verb": "replace"
+    }
+  },
+  "s2_contest_values": [
+    "乙公司",
+    "乙补充公司"
+  ],
+  "same_unit_different_sections": {
+    "A": "甲公司",
+    "C": "甲公司"
+  },
+  "stores": {
+    "S0": "/workspace/fixtures/impact/results/R27d61e9c5b04d2a0/store.sqlite3",
+    "S1": "/workspace/fixtures/impact/results/S1/store.sqlite3",
+    "S2": "/workspace/fixtures/impact/results/S2/store.sqlite3",
+    "S3": "/workspace/fixtures/impact/results/S3/store.sqlite3",
+    "S4": "/workspace/fixtures/impact/results/S4/store.sqlite3",
+    "S5": "/workspace/fixtures/impact/results/S5/store.sqlite3",
+    "S6": "/workspace/fixtures/impact/results/S6/store.sqlite3",
+    "S7": "/workspace/fixtures/impact/results/S7/store.sqlite3",
+    "S8": "/workspace/fixtures/impact/results/S8/store.sqlite3"
+  },
+  "supplement_published_at": "2024-03-01T09:00:00"
+}
