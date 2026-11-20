@@ -1,0 +1,8 @@
+{
+  "announcement_result_dir": "../announcement_results/R5636d78aea2f905f",
+  "files": {
+    "movements": "movements.jsonl",
+    "receipts": "receipts.jsonl"
+  },
+  "package_id": "WH-WALKTHROUGH"
+}

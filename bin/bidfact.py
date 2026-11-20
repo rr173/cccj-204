@@ -15,6 +15,7 @@ sys.path.append(str(Path(__file__).resolve().parent))
 from bidfact.export import export_all  # noqa: E402
 
 import bidfact_fund  # noqa: E402  (sibling module in bin/)
+import bidfact_warehouse  # noqa: E402
 from bidfact.pipeline import run_pipeline  # noqa: E402
 from bidfact.storage import Store  # noqa: E402
 from bidfact.timeline import (current_facts, document_statements,  # noqa: E402
@@ -57,10 +58,11 @@ def main(argv: list[str] | None = None) -> int:
     p_exp.add_argument("result_dir", type=Path)
 
     bidfact_fund.add_arguments(sub)
+    bidfact_warehouse.add_arguments(sub)
 
     args = parser.parse_args(argv)
 
-    if args.cmd == "fund":
+    if args.cmd in ("fund", "warehouse"):
         return args.func(args)
 
     if args.cmd == "run":

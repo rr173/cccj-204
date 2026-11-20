@@ -41,11 +41,14 @@ bidfact/            库代码（仅标准库）
   export.py         facts/conflicts/evidence/relations/statements/timeline
   fund/             采购资金月结（输入、勾兑、分摊、退款、独立资金库、读写、
                     只读公告依据影响分析 impact）
-bin/bidfact.py      CLI（含 fund 子命令）
+  warehouse/        收货批次血缘与召回清单（包装输入、区间化血缘库、召回查询）
+bin/bidfact.py      CLI（含 fund、warehouse 子命令）
 bin/bidfact_fund.py fund 子命令的实现
+bin/bidfact_warehouse.py warehouse 子命令的实现
 tests/              unittest 套件、夹具生成器、手工预期、大样本内存样例
+                    （warehouse_reference.py 是逐件标记的独立参考模型）
 fixtures/           可提交的小夹具（含 expected_walkthrough.json、fund/ 月结样例、
-                    impact/ 影响分析样例）
+                    impact/ 影响分析样例、warehouse/ 召回演练与错样本）
 ```
 
 ## 运行
@@ -347,3 +350,131 @@ S1–S8 是在其副本上按 bidfact 存储 schema 独立构造的后续结果�
 错误结果号、空库）；`impact_expected.json` 是逐笔手算的期望状态与金额。
 大月结库在测试运行时生成，不作为夹具提交。
 
+
+---
+
+# 收货批次血缘与召回清单（warehouse）
+
+`bidfact/warehouse/` 回答一个与钱无关的问题：供应商召回某个原厂批号时，
+这一批收货的**每一件**现在在哪、哪一段已发给谁、数量是怎样从原始收货单
+一路传过来的。它不做库存操作（不收货、不下架、不调整），也不从公告金额、
+中标断言或资金账推断实物去向。
+
+## 输入：一份逐行可读的包装目录
+
+```
+manifest.json
+receipts.jsonl     一次收货一行（一个载体记录）
+movements.jsonl    一次流转一行（旧区间 → 新载体的映射）
+announcement_result_dir → 既有 bidfact 结果库（只读）
+```
+
+```json
+{"kind":"receipt","seq":10,"receipt_id":"A","location_id":"LOC-A",
+ "sku":"SKU-1","supplier_id":"SUP-1","supplier_batch":"LOT-A","qty":6,
+ "result_id":"R…","document_id":"docWH1","project_id":"PRJ-1","section_id":"SEC-1"}
+
+{"kind":"movement","seq":20,"movement_type":"repack","sku":"SKU-1",
+ "targets":[{"target_id":"P"}],
+ "mappings":[{"source_id":"B","from_start":0,"from_end":2,
+              "target_id":"P","to_start":0,"to_end":2},
+             {"source_id":"A","from_start":1,"from_end":4,
+              "target_id":"P","to_start":2,"to_end":5},
+             {"source_id":"B","from_start":2,"from_end":4,
+              "target_id":"P","to_start":5,"to_end":7}]}
+```
+
+- **业务序号**（`seq`，正整数）：收货与流转共用一套序号，可跳号、绝不连续
+  要求；构建按序号生效，与文件行序无关。重复序号即冲突。
+- **载体**：`receipt_id` 是收货载体；流转的每个 `target_id` 是新载体。件数
+  是正整数，载体内的件用半开区间 `[0, 件数)` 表示，不要求逐件序列号。
+- **流转**：`repack`（重装，库位与隔离状态不变）、`transfer`（调拨，换库位、
+  不换状态）、`quarantine` / `release`（隔离/解隔，库位不变）、`ship`（发货，
+  只取可用件，必须给 `recipient` 与 `shipment_document`，是终点）。
+- **映射**：两段必须等长，段内按偏移保序；多个段在新载体里的排布可与旧载体
+  不同；可以一拆多、多并一。每个新载体的坐标必须从 0 起恰被覆盖，无缺口、
+  无重叠；`target_id` 不得复用。一次流转只处理一个 SKU，库位规则只允许
+  `transfer` 合并不同库位。
+- **状态**：收货初始为可用；`quarantine` 只能取可用件，`release` 只能取隔离
+  件，`ship` 只能取可用件；已发货是终点。未被取走的件留在原载体的原坐标，
+  不压缩重排。
+- **只读依据**：构建时用调用者给的公告 SQLite 结果**只读**核对
+  `result_id`、`document_id` 以及该文档登记的项目/标段，并保留原始定位。
+  它只证明确有该采购范围：不解读中标断言、不查付款、不要求公告仍有效。
+
+## 构建（`warehouse build`）
+
+```bash
+python3 -I bin/bidfact.py warehouse build \
+  --package fixtures/warehouse/walkthrough --library ./whlib [--force]
+```
+
+- 全量校验后才交付。任一坏行、重复件、越界、取走已消耗件、状态不允许、
+  引用未来载体，都带**源文件与行号**报出，整库拒绝；不跳过坏流转后继续生成
+  一份看似完整的召回数据，也不覆盖已有可用库。
+- 同一份包装重复构建 → `reused: true`（库字节不变）；不同输入且未给
+  `--force` → 拒绝覆盖；`--force` 下新构建失败仍留下旧库。
+- 库是单个 SQLite（`warehouse.sqlite3`），内置 schema 版本与业务摘要；
+  构建/查询都不修改源文件与公告库，读入期间文件被改动即拒绝交付。
+
+## 召回（`warehouse recall`）
+
+```bash
+python3 -I bin/bidfact.py warehouse recall --library ./whlib \
+  --supplier SUP-1 --batch LOT-A --sku SKU-1 --cutoff 40 \
+  [--receipt A --from-pos 2 --to-pos 5] [--jsonl out.jsonl]
+```
+
+- 匹配键严格是 `(供应商, 原厂批号, SKU)`；同箱的其他批次、同批号的别家供应商
+  都不算。截止序号（含）之后收货的部分不参与，单列为 `skipped_receipt`。
+  无匹配就是空清单。
+- 输出**仍在库的片段**（载体 + 局部区间、库位、可用/隔离）与**已发货片段**
+  （发货单、收件方、出库区间），分列件数与合计；每段带一条从端点回溯的
+  血缘路径：每跳一条映射行（含前后区间、局部偏移），直到原收货区间和采购定位
+  （结果号/文档/项目/标段）。不合并因来源或映射不同产生的分段，也不重复覆盖。
+- `--receipt` + 本地半开区间 `[from,to)` 把命中裁到该收货单的局部范围；
+  段被裁剪时同时给出原始整段，件数只计选中部分。
+- 顺序按业务序号与稳定标识，不随文件行序变化；每次召回应满足
+  **选中件数 = 可用 + 隔离 + 已发货**，库内对不平时直接报错而不是输出。
+- `--jsonl` 流式落盘（header / receipt / live / shipped / totals），段用
+  服务器游标分批读取，不把全部命中或完整证据路径常驻内存。
+
+## 存储与空间行为
+
+`stock_segments` 是**时间化区间表**：每种状态下的一段件只占一行（载体、局部
+区间、收货坐标、状态/库位、`valid_from`/`valid_to`、产生它的那一跳映射），
+因而：
+
+- 一千万件的收货也是一行，不展开成逐件行；
+- 截止序号查询只是索引范围扫描，无需重放全部流转；
+- 血缘路径长度由链深决定，与命中件数无关；构建与召回都不会把全量映射或全部
+  命中读进内存。
+
+## 手工演练（可手数）
+
+`fixtures/warehouse/walkthrough/` 与 `tests/make_warehouse_fixtures.py` 中的
+期望值都是**手算**写进去的（不是代码产物）：
+
+- A 收货 6 件（SUP-1 / LOT-A / SKU-1，LOC-A，序号 10），B 收货 4 件
+  （SUP-1 / LOT-B / SKU-1，也放 LOC-A，序号 12）；另有同批号别家供应商 C、
+  同供应商同批号别的 SKU D 作为干扰。
+- P（重装，序号 20）依次装入 B[0,2)、A[1,4)、B[2,4)，得 7 件；
+  装箱刚结束时 A 的命中是 P[2,5)（3 件）和 A 自己剩的 A[0,1)、A[4,6)。
+- H（隔离，序号 30）取 P[3,5)：那是 A[2,4) 的 2 件；
+  S（发货，序号 40）发 P[1,3) 给 DEPT-S / SHIP-1：一件 A（A[1,2)）和
+  一件 B（B[2,3)），所以 S 收到的两件**不能都列入召回**。
+- 截止 40 召回整批 A：原载体 A 剩 3 件（A[0,1)、A[4,6)）、H 中 2 件隔离、
+  发给 S 1 件，合计 6。
+- 只召回 A 的 `[2,5)`：H[0,2) 2 件 + A[4,5) 1 件，S 不命中，合计 3。
+- 错误样本：对 P 取 `[4,6)`（`fixtures/warehouse/bad_movement`）——P[4,5)
+  已进 H、P[5,6) 仍在库，仍整库拒绝并定位到 `movements.jsonl:4`。
+
+```bash
+python3 -I tests/make_warehouse_fixtures.py
+python3 -I tests/run_warehouse_tests.py     # BIDFACT_SKIP_MEMORY=1 跳过内存断言
+```
+
+测试另外用 `tests/warehouse_reference.py`（逐件标记的独立模型，按业务序号
+截断到截止时点）比对多次拆并、调拨、隔离/解隔在中途与最终的去向与血缘；
+运行时生成宽批次、多段映射与深层链，断言行数不随件数线性增长、峰值内存
+有界。生成的应力数据不提交。

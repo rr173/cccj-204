@@ -1,0 +1,6 @@
+{
+  "issue_code": "source_interval_partly_consumed",
+  "note": "Even though P[5,6) is still live, the half-consumed interval rejects the movement and the whole package.",
+  "ok": false,
+  "source_line": 4
+}

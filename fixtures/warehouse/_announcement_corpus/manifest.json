@@ -1,0 +1,20 @@
+{
+  "collection": "warehouse-announcement",
+  "documents": [
+    {
+      "document_id": "docWH1",
+      "notice_id": "N-WH-1",
+      "project_id": "PRJ-1",
+      "published_at": "2024-01-05T09:00:00",
+      "section_ids": [
+        "SEC-1",
+        "SEC-2"
+      ],
+      "site": "site1",
+      "source": {
+        "file": "pages/docWH1.json",
+        "sha256": "3004057f2b74cc650c7a3332ef49935f99df5ae64ee1c524ab5e74456974ec0a"
+      }
+    }
+  ]
+}

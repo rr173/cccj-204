@@ -232,3 +232,36 @@ class WeightedLine:
     weight: int
     result_id: str
     result_unit_assertion_id: str
+
+
+# --------------------------------------------------------------------------
+# Warehousing type helpers (``bidfact warehouse``).
+#
+# Quantities are positive integers in *pieces*; intervals are half-open
+# ``[start, end)`` with 0 <= start < end.  They are deliberately kept
+# separate from minor-currency amounts above: a piece is not money, and a
+# negative or decimal quantity is always a malformed row, never rounded.
+
+def parse_non_negative_int_strict(value: object, what: str = "offset") -> int:
+    """Like :func:`parse_non_negative_int` but refuses negative zero forms."""
+    n = parse_non_negative_int(value, what)
+    return n
+
+
+def parse_positive_quantity(value: object, what: str = "qty") -> int:
+    return parse_positive_int(value, what)
+
+
+def check_interval(start: object, end: object, what: str = "interval",
+                   require_positive: bool = True) -> tuple[int, int]:
+    """Validate ``[start, end)``; returns the exact integer pair."""
+    s = parse_non_negative_int_strict(start, f"{what}.start")
+    e = parse_non_negative_int_strict(end, f"{what}.end")
+    if require_positive and e <= s:
+        raise MoneyError(
+            f"{what} must be a non-empty half-open interval [start, end), "
+            f"got [{s}, {e})")
+    if not require_positive and e < s:
+        raise MoneyError(
+            f"{what} must have start <= end, got [{s}, {e})")
+    return s, e
